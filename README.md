@@ -81,6 +81,9 @@ npm run dev
 
 
 ## Imp notes 
+
 Blogs are created in draft mode by default
+
 Only published blogs are visible to real users 
+
 Ai content is also editable before saving
