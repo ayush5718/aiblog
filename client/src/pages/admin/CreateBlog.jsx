@@ -22,7 +22,7 @@ const CreateBlog = () => {
     // Loading states
     const [loading, setLoading] = useState(false);
 
-    // STEP 1: Generate Titles from Topic
+    // STEP 1 Generate Titles from Topic
     const handleGenerateTitles = async () => {
         if (!topic.trim()) return alert("Please enter a topic first");
         setLoading(true);
@@ -36,12 +36,12 @@ const CreateBlog = () => {
         setLoading(false);
     };
 
-    // STEP 2: Select a Title
+    // STEP 2 Select Title
     const handleSelectTitle = (title) => {
         setSelectedTitle(title);
     };
 
-    // STEP 3: Generate Content from Selected Title
+    // STEP 3 Generate Content from Selected Title
     const handleGenerateContent = async () => {
         if (!selectedTitle) return alert("Please select a title first");
         setLoading(true);
@@ -55,7 +55,7 @@ const CreateBlog = () => {
         setLoading(false);
     };
 
-    // STEP 4: Save Blog (no image yet, not published)
+    // STEP 4 Save Blog (no image yet, not published)
     const handleSaveBlog = async () => {
         if (!selectedTitle || !content) return alert("Title and content are required");
         setLoading(true);
@@ -74,9 +74,13 @@ const CreateBlog = () => {
         setLoading(false);
     };
 
-    // STEP 5: Generate Image (after save)
+    // STEP 5 Generate Image (after save)
     const handleGenerateImage = async () => {
-        if (!savedBlogId) return alert("Save the blog first");
+        if (!savedBlogId) {
+            setLoading(false);
+            return alert("Save the blog first");
+        }
+
         setLoading(true);
         try {
             const data = await generateImageApi(savedBlogId);
@@ -85,10 +89,12 @@ const CreateBlog = () => {
         } catch (err) {
             alert("Failed to generate image");
         }
-        setLoading(false);
+        finally {
+            setLoading(false);
+        }
     };
 
-    // Final: Go to Dashboard
+    // Final Go to Dashboard
     const handleFinish = () => {
         navigate("/admin/dashboard");
     };
@@ -99,7 +105,7 @@ const CreateBlog = () => {
             <div className="p-8 max-w-3xl mx-auto">
                 <h1 className="mb-8 text-2xl font-bold">Create New Blog</h1>
 
-                {/* STEP 1: Topic Input */}
+                {/* STEP 1 Topic Input */}
                 <section className="mb-8 p-6 border border-gray-300 rounded-lg">
                     <h3 className="mb-4 text-lg font-semibold">Step 1: Enter Topic</h3>
                     <input
@@ -119,7 +125,7 @@ const CreateBlog = () => {
                     </button>
                 </section>
 
-                {/* STEP 2: Select Title */}
+                {/* STEP 2 Select Title */}
                 {step >= 2 && (
                     <section className="mb-8 p-6 border border-gray-300 rounded-lg">
                         <h3 className="mb-4 text-lg font-semibold">Step 2: Select a Title</h3>
@@ -148,7 +154,7 @@ const CreateBlog = () => {
                     </section>
                 )}
 
-                {/* STEP 3: Edit Content */}
+                {/* STEP 3 Edit Content */}
                 {step >= 3 && (
                     <section className="mb-8 p-6 border border-gray-300 rounded-lg">
                         <h3 className="mb-4 text-lg font-semibold">Step 3: Edit Content</h3>
@@ -174,10 +180,10 @@ const CreateBlog = () => {
                     </section>
                 )}
 
-                {/* STEP 4: Generate Image (After Save) */}
+                {/* STEP 4 Generate Image (After Save) */}
                 {step >= 4 && (
                     <section className="mb-8 p-6 border border-gray-300 rounded-lg">
-                        <h3 className="mb-4 text-lg font-semibold">Step 4: Generate Featured Image (Optional)</h3>
+                        <h3 className="mb-4 text-lg font-semibold">Step 4 Generate Featured Image (Optional)</h3>
                         <p className="mb-4 text-gray-600">
                             The image will be generated based on this blog title <strong>{selectedTitle}</strong>
                         </p>
