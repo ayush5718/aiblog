@@ -54,7 +54,10 @@ npm install
 
 npm run dev
 
+## Environment Variables
+
 create a .env inside the server directory
+
 DATABASE_URL=your_postgresql_url 
 
 PORT=port_number
