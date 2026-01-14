@@ -49,21 +49,31 @@ Git clone https://github.com/ayush5718/aiblog.git
 
 ## Backend Setup 
 cd server
+
 npm install
+
 npm run dev
 
 create a .env inside the server directory
-DATABASE_URL=your_postgresql_url
+DATABASE_URL=your_postgresql_url 
+
 PORT=port_number
+
 JWT_SECRET=your_secret_key
+
 GEMINI_API_KEY=your_gemini_api_key
+
 IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+
 IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
 
 ## Frontend Setup 
 cd client
+
 npm install
+
 npm run dev
 
 
