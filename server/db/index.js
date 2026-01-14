@@ -1,0 +1,16 @@
+import pkg from "pg";
+
+const { Pool } = pkg;
+
+export const pool = new Pool({
+    connectionString: process.env.DATABASE_URL
+});
+
+
+pool.on('connect', () => {
+    console.log("Database connnected");
+})
+
+pool.on("error", (err) => {
+    console.error("Database error:", err.message);
+});
