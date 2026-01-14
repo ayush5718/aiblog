@@ -56,7 +56,7 @@ npm run dev
 
 ## Environment Variables
 
-create a .env inside the server directory
+### create a .env inside the server directory
 
 DATABASE_URL=your_postgresql_url 
 
